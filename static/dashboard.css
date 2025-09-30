@@ -1,0 +1,207 @@
+/* General Reset */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+/* Navbar */
+.navbar {
+    background: #b16bdb; /* purple strip */
+    color: #fff;
+    padding: 15px 50px;
+}
+
+.navbar .navop ul{
+    list-style: none;
+    display: flex;
+    gap: 40px;
+}
+
+.navbar .navop ul li a{
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    padding: 10px 20px;
+    margin: 10px;
+}
+
+.navbar .navop ul li a:hover{
+    color: black;
+    background-color: #ffffff;
+    opacity: 80%;
+    border-radius: 10px;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navbar .logo span {
+    background: black;
+    color: white;
+    font-size: 20px;
+    padding: 4px 8px;
+    border-radius: 8px;
+}
+
+.logout-btn {
+    text-decoration: none;
+    color: #222;
+    font-weight: 600;
+    padding: 10px 20px;
+}
+.logout-btn:hover {
+     color: black;
+    background-color: #ffffff;
+    opacity: 80%;
+    border-radius: 2cap;
+}
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+/* Welcome Section */
+.welcome h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+.welcome p {
+    font-size: 1rem;
+    color: #272727;
+}
+/* Dashboard container fix */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  /* keep all children aligned left */
+    padding: 5px 20px;       /* adjust padding to match your screenshot */
+}
+
+/* Stats Cards */
+.stats {
+    display: flex;
+    justify-content: flex-start; /* align left */
+    gap: 30px;
+    margin: 10px 0 20px 0;
+    width: 100%;
+}
+
+.stats .card {
+    background: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 500px;
+    text-align: center;
+    margin-bottom: 1px;
+    background-color:rgb(102, 175, 249);
+}
+
+.stats .card img {
+    width: 80px;
+    margin-bottom: 10px;
+    border-radius: 3cap;
+    align-self: center;
+    box-shadow: rgb(102, 175, 249);
+}
+.stats .card p {
+    font-weight: 600;
+    margin: 0;
+}
+
+/* My Courses */
+.courses h2 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* slightly larger cards */
+    gap: 20px; /* better spacing between courses */
+    width: 100%;
+    padding-bottom: 20px;
+}
+.course {
+    background: white;
+    border-radius: 15px;
+    border: 1px solid #ddd; /* visible border */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 15px;
+    text-align: center;
+    color: black;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.course a {
+    background: #fff;
+    color: #333;
+    text-decoration: none;
+    font-size: medium;
+    font-weight: bold;
+    padding: 8px 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+    background-color:rgb(153, 200, 248);
+}
+
+.course a:hover {
+    background-color:rgb(102, 175, 249);
+    color:#222;
+
+}
+
+/* Generator Bar */
+.generator {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+}
+
+.generator form {
+    background: #b16bdb;
+    padding: 15px;
+    border-radius: 20px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    width: 99%;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.generator input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 10px 15px;
+    min-width: 400px;
+}
+.generate-btn {
+    background: #a200ff;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.generate-btn:hover {
+    background: #40016e;
+}

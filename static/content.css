@@ -1,0 +1,81 @@
+/* General Page Styling */
+body {
+    background-color: #f9f5fc;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* Container */
+.container {
+    max-width: 900px;
+    background: #fff;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(177, 107, 219, 0.2);
+}
+
+/* Heading */
+h2 {
+    font-weight: 700;
+    color: #b16bdb;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* AI Content Styling */
+.ai-content h1,
+.ai-content h2,
+.ai-content h3 {
+    color: #6a1b9a;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.ai-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #444;
+}
+
+.ai-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.ai-content ol {
+    list-style-type: decimal;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.ai-content li {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.ai-content strong {
+    color: #b16bdb;
+}
+
+/* Back Button */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #b16bdb, #d18ee2);
+    padding: 12px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #9a4fcf, #c678dd);
+    transform: scale(1.05);
+}
