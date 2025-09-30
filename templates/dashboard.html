@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar d-flex justify-content-between align-items-center px-4">
+        <div class="logo"><span>AI</span> Learner Buddy</div>
+        <div class="navop">
+            <ul>
+                <li><a href="{{url_for('main')}}">Home</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+            <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+            <img src="{{ url_for('static', filename='profile.png') }}" alt="Profile" class="profile-pic">
+        </div>
+    </nav>
+
+    <div class="dashboard">
+        <!-- Welcome Section -->
+    <section class="welcome text-center mt-4">
+        <h1>Welcome back 👋</h1>
+        <p>Ready to learning with your AI Learner Buddy?</p>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats mt-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename='totalC.png') }}" alt="Courses">
+            <p class="header">Total Courses: {{ courses|length }}</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='completed.png') }}" alt="Completed">
+            <p class="header">Completed: 0</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='progress.png') }}" alt="In Progress">
+            <p class="header">In Progress: {{ courses|length }}</p>
+        </div>
+    </section>
+    </div>
+    <!-- My Courses -->
+    <section class="courses px-4 mt-5">
+        <h2>My Courses</h2>
+        <div class="course-grid">
+            {% if courses %}
+                {% for course in courses %}
+                    <div class="course">
+                        <strong>{{ course[1] }}</strong>
+                        <p>{{ course[2] }}</p>
+                        <a href="{{ url_for('chapters', course_id=course[0]) }}" class="btn btn-light mt-2">View</a>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No courses added yet.</p>
+            {% endif %}
+        </div>
+    </section>
+    <!-- Course Generator -->
+    <section class="generator d-flex justify-content-center gap-2 mt-5">
+        <form method="POST" action="{{ url_for('dashboard') }}">
+    <input type="text" name="course_name"  placeholder="What do you want to learn?"required>
+    <input type="number" name="num_chapters"  placeholder="Number of Chapters"required>
+    <select name="level" required style="padding: 15px; border-radius:15px; border:1px solid #ccc; min-width: 400px;">
+        <option value="" disabled selected>Level of Difficulty</option>
+        <option value="Beginner">Beginner</option>
+        <option value="Intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+    </select>
+
+    <button type="submit" class="generate-btn">Generate Course</button>
+</form>
+
+    </section>
+</body>
+
+</html>
