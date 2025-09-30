@@ -1,0 +1,137 @@
+/* General Reset */
+body {
+    background-color: #f9f5fc;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+/* Container */
+.container {
+    max-width: 800px;
+    background: #fff;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 6px 14px rgba(177, 107, 219, 0.2);
+}
+
+/* Heading */
+h2 {
+    font-weight: 700;
+    color: #b16bdb;
+    margin-bottom: 15px;
+}
+
+/* Course description */
+p {
+    font-size: 20px;
+    color: #111;
+    margin-bottom: 25px;
+}
+
+/* Chapters list */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 12px;
+}
+
+ul li a {
+    text-decoration: none;
+    display: block;
+    padding: 14px 18px;
+    background-color: #f1e7f7;
+    border-radius: 10px;
+    color: #333;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+ul li a:hover {
+    background: linear-gradient(135deg, #b16bdb, #d18ee2);
+    color: #fff;
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+/* Back button */
+.back-btn {
+    display: inline-block;
+    margin-top: 25px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #b16bdb, #d18ee2);
+    padding: 12px 20px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.back-btn:hover {
+    background: linear-gradient(135deg, #9a4fcf, #c678dd);
+    transform: scale(1.05);
+}
+.page-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;               /* fixed width */
+    background: #b14fff;        /* sidebar color */
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    position: fixed;            /* sticks to left */
+    top: 0;
+    left: 0;
+    height: 100vh;              /* full height of page */
+}
+
+.sidebar .logo {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+.sidebar .logo span{
+    background-color: black;
+    color: white;
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 10px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    color: #b14fff;
+    text-decoration: none;
+    font-weight: 500;
+    display: block;
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    font-weight: bolder;
+}
+
+.sidebar ul li a:hover {
+    background: #c875ff;
+    color: white;
+}
