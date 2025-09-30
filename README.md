@@ -63,4 +63,4 @@ Future improvements planned include:
 
 This is a learning and evolving project. The aim is to create a fully functional, intelligent course builder that bridges education and AI seamlessly.  
 Contributions, suggestions, and feedback are welcome!
-**Note:** Screenshots and outputs shown in this README are from the current working version and may change as features are enhanced.
+- **Note:** Screenshots and outputs shown in this README are from the current working version and may change as features are enhanced.
