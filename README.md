@@ -1,6 +1,6 @@
 # AI-Learner-Buddy
 AI Learner Buddy is an AI-powered course creation and learning platform. It allows users to generate structured courses, chapters, and detailed chapter content dynamically using AI. Built with Flask, SQLite, and Google’s Generative AI, it provides an intuitive interface for managing personalized learning journeys.
-## 📌 Features So Far
+## > Features So Far
 
 - **User Authentication**
   - Register, login, and logout functionality.
@@ -21,7 +21,7 @@ AI Learner Buddy is an AI-powered course creation and learning platform. It allo
 
 ---
 
-## 🛠 Tech Stack
+## > Tech Stack
 
 - **Backend:** Python, Flask  
 - **Frontend:** HTML, CSS, Bootstrap  
@@ -30,29 +30,36 @@ AI Learner Buddy is an AI-powered course creation and learning platform. It allo
 - **Authentication:** Flask sessions, password hashing with Werkzeug  
 
 ---
+## > Example Output
 
-## 📁 Project Structure
-
-AI-Learner-Buddy/
-│
-├── app.py # Main Flask app for dashboard, chapters, content
-├── auth.py # Authentication (login, register, logout)
-├── ai_api.py # AI helper functions for course/chapter generation
-├── templates/ # HTML template files
-│ ├── main.html
-│ ├── dashboard.html
-│ ├── chapters.html
-│ ├── content.html
-│ ├── login.html
-│ ├── register.html
-│ └── ...
-├── static/ # CSS, JS, images
-├── users.db # SQLite database file
-└── README.md # Project documentation
----
-##📷 Example Output
-### Dashboard  
-Shows total courses, completed courses, in-progress courses, and a course generator form.
-![Dashboard Screenshot](static/images/dashboard.png)
+### Main Page  
+![Main Page Screenshot](output/dashboard.png)
+### Login Page  
+![Login Page Screenshot](output/login.png)
+### Register Page  
+![Register Page Screenshot](output/register.png)
+### Dashboard Page  
+![Dashboard Page Screenshot](output/dashboard.png)
+### Chapter List Page  
+![Chapter List Page Screenshot](output/chapterlist.png)
+### Chapter Content Page  
+![Chapter Content Page Screenshot](output/chaptercontent.png)
+### About Page  
+![About Page Screenshot](output/about1.png)
 
 ---
+## > Work in Progress
+
+This project, **AI Learner Buddy**, is still under active development.  
+Currently, it provides the core functionality for user authentication, course creation, chapter generation, and AI-powered content generation.  
+
+Future improvements planned include:
+
+-  Enhanced AI Generation for richer course generation  
+-  Improved UI/UX with responsive design and user-friendly interactions  
+-  Course saving and progress tracking    
+-  Interactive quizzes at the end of each course to test knowledge  
+-  More robust error handling and input validation    
+
+This is a learning and evolving project. The aim is to create a fully functional, intelligent course builder that bridges education and AI seamlessly.  
+Contributions, suggestions, and feedback are welcome!
