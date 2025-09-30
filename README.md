@@ -33,7 +33,7 @@ AI Learner Buddy is an AI-powered course creation and learning platform. It allo
 ## > Example Output
 
 ### Main Page  
-![Main Page Screenshot](output/dashboard.png)
+![Main Page Screenshot](output/main.png)
 ### Login Page  
 ![Login Page Screenshot](output/login.png)
 ### Register Page  
