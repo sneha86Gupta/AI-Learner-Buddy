@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <div class="page-wrapper">
+    <!-- Sidebar / Vertical Navbar -->
+    <nav class="sidebar">
+        <div class="logo"><span>AI</span> Learner Buddy</div>
+        <ul>
+            <li><a href="{{ url_for('main') }}">Home</a></li>
+            <li><a href="{{url_for('about')}}">About</a></li>
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+</div>
+    <div class="container">
+        
+        <!-- Left Panel -->
+        <div class="left-box">
+            <div class="branding">
+                <span class="logo">AI</span>
+                <h2>Learner Buddy</h2>
+            </div>
+            <img src="{{ url_for('static', filename='robot.png') }}" alt="Robot illustration">
+        </div>
+
+        <!-- Right Panel -->
+        <div class="right-box">
+            <div class="profile">
+                <img src="{{ url_for('static', filename='avtar.png') }}" alt="User Avatar">
+            </div>
+            <form method="POST" class="styled-form">
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+            <p>Don't have an account? 
+                <a href="{{ url_for('register') }}">Register here</a>
+            </p>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='validate.js') }}"></script>
+</body>
+</html>

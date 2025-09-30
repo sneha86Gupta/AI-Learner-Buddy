@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Learner Buddy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Navbar -->
+    <header>
+        <div class="logo"><span>AI</span> Learner Buddy</div>
+        <nav>
+            <ul>
+                <li><a href="{{url_for('main')}}">Home</a></li>
+                <li><a href="{{url_for('about')}}">About</a></li>
+                <li><a href="#">Dashboard</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="{{ url_for('login') }}">Login</a>
+            <a href="{{ url_for('register') }}" class="signup">Sign Up</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Build Courses with Your AI Learner Buddy</h1>
+        <p>Turn your ideas into complete, engaging courses — effortlessly. With the power of AI, create high-quality, learner-focused content in minutes. Whether you’re an educator, trainer, or professional.</p>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+        <a href="{{ url_for('login') }}">Get Started</a>
+    </div>
+</body>
+</html>
