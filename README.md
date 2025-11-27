@@ -17,10 +17,10 @@ AI Learner Buddy is an AI-powered course creation and learning platform. It allo
 - **Content Generation**
   - Generate detailed content for each chapter dynamically via AI.
 
-- **Smart AI Prompting (New)**
+- **Smart AI Prompting**
   - Generates dynamic AI prompts based on topic, chapter context, and user inputs.
   - To enhance the relevance and quality of generated learning content, the system integrates a Smart AI Prompting mechanism.
-- **Real-Time Course Tracking (New)**
+- **Real-Time Course Tracking**
   - Tracks user progress across chapters in real time.
   - Monitors completed/ongoing topics and adjusts suggestions accordingly.
 
