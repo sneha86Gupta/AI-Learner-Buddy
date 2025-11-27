@@ -5,19 +5,32 @@ AI Learner Buddy is an AI-powered course creation and learning platform. It allo
 - **User Authentication**
   - Register, login, and logout functionality.
   - Password hashing for security.
+
 - **Course Management**
   - Create new courses with a title, difficulty level, and number of chapters.
   - View a list of created courses.
+
 - **Chapter Management**
   - Auto-generate chapter titles using AI.
   - View a list of chapters for each course.
+
 - **Content Generation**
   - Generate detailed content for each chapter dynamically via AI.
+
+- **Smart AI Prompting (New)**
+  - Generates dynamic AI prompts based on topic, chapter context, and user inputs.
+  - To enhance the relevance and quality of generated learning content, the system integrates a Smart AI Prompting mechanism.
+- **Real-Time Course Tracking (New)**
+  - Tracks user progress across chapters in real time.
+  - Monitors completed/ongoing topics and adjusts suggestions accordingly.
+
 - **Navigation**
   - Dashboard showing all courses and basic statistics.
   - Structured navigation between dashboard, courses, chapters, and content.
+
 - **Responsive UI**
   - Modern interface built using HTML, CSS, and Bootstrap.
+
 
 ---
 
