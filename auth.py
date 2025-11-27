@@ -1,3 +1,4 @@
+# auth.py
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 import sqlite3
 import os
@@ -26,7 +27,8 @@ def init_db():
                 password TEXT NOT NULL
             )
         """)
-        # Courses table
+
+        # Courses table with progress column
         c.execute("""
             CREATE TABLE IF NOT EXISTS courses (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -34,22 +36,26 @@ def init_db():
                 course_name TEXT NOT NULL,
                 description TEXT,
                 num_chapters INTEGER NOT NULL DEFAULT 6,
+                progress REAL DEFAULT 0,
                 FOREIGN KEY (user_id) REFERENCES users(id)
             )
         """)
-        # Chapters table
+
+        # Chapters table with completed column
         c.execute("""
             CREATE TABLE IF NOT EXISTS chapters (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 course_id INTEGER,
                 chapter_name TEXT,
                 content TEXT,
+                completed INTEGER DEFAULT 0,
                 FOREIGN KEY (course_id) REFERENCES courses(id)
             )
         """)
+
         conn.commit()
 
-
+# Initialize database tables
 init_db()
 
 # --------------------
@@ -69,7 +75,7 @@ def login():
             if row and check_password_hash(row[1], password):
                 session['user_id'] = row[0]  # Save user_id in session
                 flash("✅ Login successful!", "success")
-                return redirect(url_for("dashboard"))  # Redirect to dashboard
+                return redirect(url_for("dashboard"))
             else:
                 flash("❌ Invalid username or password!", "danger")
     
@@ -110,6 +116,6 @@ def register():
 # --------------------
 @app.route("/logout")
 def logout():
-    session.clear()   # clears ALL session keys
+    session.clear()
     flash("You have been logged out!", "info")
-    return redirect(url_for("login"))  # ✅ redirect to login page, not main
+    return redirect(url_for("login"))
