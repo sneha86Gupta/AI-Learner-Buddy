@@ -12,8 +12,8 @@
         <div class="logo"><span>AI</span> Learner Buddy</div>
         <div class="navop">
             <ul>
-                <li><a href="{{url_for('main')}}">Home</a></li>
-                <li><a href="{{url_for('about')}}">About</a></li>
+                <li><a href="{{ url_for('main') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
                 <li><a href="#">Dashboard</a></li>
                 <li><a href="#">Contact</a></li>
             </ul>
@@ -26,27 +26,28 @@
 
     <div class="dashboard">
         <!-- Welcome Section -->
-    <section class="welcome text-center mt-4">
-        <h1>Welcome back 👋</h1>
-        <p>Ready to learning with your AI Learner Buddy?</p>
-    </section>
+        <section class="welcome text-center mt-4">
+            <h1>Welcome back 👋</h1>
+            <p>Ready to learn with your AI Learner Buddy?</p>
+        </section>
 
-    <!-- Stats Section -->
-    <section class="stats mt-4">
-        <div class="card">
-            <img src="{{ url_for('static', filename='totalC.png') }}" alt="Courses">
-            <p class="header">Total Courses: {{ courses|length }}</p>
-        </div>
-        <div class="card">
-            <img src="{{ url_for('static', filename='completed.png') }}" alt="Completed">
-            <p class="header">Completed: 0</p>
-        </div>
-        <div class="card">
-            <img src="{{ url_for('static', filename='progress.png') }}" alt="In Progress">
-            <p class="header">In Progress: {{ courses|length }}</p>
-        </div>
-    </section>
+        <!-- Stats Section -->
+        <section class="stats mt-4 d-flex gap-3 justify-content-center">
+            <div class="card">
+                <img src="{{ url_for('static', filename='totalC.png') }}" alt="Courses">
+                <p class="header">Total Courses: <span id="total-courses">{{ courses|length }}</span></p>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='completed.png') }}" alt="Completed">
+                <p class="header">Completed: <span id="completed-courses">{{ courses|selectattr('progress','equalto',100)|list|length }}</span></p>
+            </div>
+            <div class="card">
+                <img src="{{ url_for('static', filename='progress.png') }}" alt="In Progress">
+                <p class="header">In Progress: <span id="inprogress-courses">{{ courses|selectattr('progress','lt',100)|list|length }}</span></p>
+            </div>
+        </section>
     </div>
+
     <!-- My Courses -->
     <section class="courses px-4 mt-5">
         <h2>My Courses</h2>
@@ -54,9 +55,18 @@
             {% if courses %}
                 {% for course in courses %}
                     <div class="course">
-                        <strong>{{ course[1] }}</strong>
-                        <p>{{ course[2] }}</p>
-                        <a href="{{ url_for('chapters', course_id=course[0]) }}" class="btn btn-light mt-2">View</a>
+                        <strong>{{ course.course_name }}</strong>
+                        <p>{{ course.description }}</p>
+
+                        <!-- Progress Bar -->
+                        <div class="progress mt-2">
+                            <div class="progress-bar" id="progress-bar-{{ course.id }}" role="progressbar" 
+                                 data-progress="{{ course.progress|default(0) }}">
+                                {{ course.progress|default(0) }}%
+                            </div>
+                        </div>
+
+                        <a href="{{ url_for('chapters', course_id=course.id) }}" class="btn btn-light mt-2">View</a>
                     </div>
                 {% endfor %}
             {% else %}
@@ -64,22 +74,43 @@
             {% endif %}
         </div>
     </section>
+
     <!-- Course Generator -->
     <section class="generator d-flex justify-content-center gap-2 mt-5">
         <form method="POST" action="{{ url_for('dashboard') }}">
-    <input type="text" name="course_name"  placeholder="What do you want to learn?"required>
-    <input type="number" name="num_chapters"  placeholder="Number of Chapters"required>
-    <select name="level" required style="padding: 15px; border-radius:15px; border:1px solid #ccc; min-width: 400px;">
-        <option value="" disabled selected>Level of Difficulty</option>
-        <option value="Beginner">Beginner</option>
-        <option value="Intermediate">Intermediate</option>
-        <option value="Advanced">Advanced</option>
-    </select>
-
-    <button type="submit" class="generate-btn">Generate Course</button>
-</form>
-
+            <input type="text" name="course_name" placeholder="What do you want to learn?" required>
+            <input type="number" name="num_chapters" placeholder="Number of Chapters" required>
+            <select name="level" required style="padding: 15px; border-radius:15px; border:1px solid #ccc; min-width: 400px;">
+                <option value="" disabled selected>Level of Difficulty</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
+            <button type="submit" class="generate-btn">Generate Course</button>
+        </form>
     </section>
-</body>
 
+    <!-- Initialize progress bars -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll('.progress-bar').forEach(function(bar) {
+                let progress = bar.dataset.progress || 0;
+                bar.style.width = progress + '%';
+                bar.textContent = Math.round(progress) + '%';
+            });
+        });
+
+        // Function to update dashboard counters dynamically
+        function updateDashboardCounters(completed, inprogress, courseId, progress) {
+            document.getElementById('completed-courses').textContent = completed;
+            document.getElementById('inprogress-courses').textContent = inprogress;
+
+            let bar = document.getElementById('progress-bar-' + courseId);
+            if (bar) {
+                bar.style.width = progress + '%';
+                bar.textContent = Math.round(progress) + '%';
+            }
+        }
+    </script>
+</body>
 </html>
