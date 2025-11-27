@@ -135,3 +135,38 @@ ul li a:hover {
     background: #c875ff;
     color: white;
 }
+.progress {
+    height: 20px;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #b16bdb;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 20px;
+    width: 0; /* initial width, will be set via JS */
+    transition: width 0.5s ease;
+}
+.chapter-item {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* space between checkbox and chapter link */
+    margin-bottom: 10px;
+}
+
+.chapter-item a {
+    text-decoration: none;
+    color: #000; /* or whatever color you want */
+}
+
+.chapter-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
