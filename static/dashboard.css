@@ -205,3 +205,21 @@ body {
 .generate-btn:hover {
     background: #40016e;
 }
+.progress {
+    height: 20px;
+    border-radius: 10px;
+    background-color: #e0e0e0;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: #b16bdb;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    line-height: 20px;
+    width: 0; /* initial width, will be set via JS */
+    transition: width 0.5s ease;
+}
