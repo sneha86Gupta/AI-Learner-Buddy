@@ -3,41 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chapters - {{ course[0] }}</title>
+    <title>Chapters - {{ course[1] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='chapters.css') }}">
+    <style>
+        /* Optional: move color and height into CSS instead of inline */
+        .progress-bar-custom {
+            background-color: #b16bdb;
+            height: 20px;
+            border-radius: 10px;
+        }
+        .chapter-item a {
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
+    <!-- Sidebar / Navbar -->
     <div class="page-wrapper">
-    <!-- Sidebar / Vertical Navbar -->
-    <nav class="sidebar">
-        <div class="logo"><span>AI</span> Learner Buddy</div>
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="{{url_for('about')}}">About</a></li>
-            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        </ul>
-    </nav>
+        <nav class="sidebar">
+            <div class="logo"><span>AI</span> Learner Buddy</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About</a></li>
+                <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </nav>
 
-    <!-- Main Container -->
-    <div class="container">
-        <h2>Chapters for</h2>
-        <p>{{ course[1] }}</p>
-        <ul>
-            {% for chapter in chapters %}
-                <li>
-                    <a href="{{ url_for('content', chapter_id=chapter[0]) }}">
-                        {{ chapter[1] }}
-                    </a>
+        <!-- Main Container -->
+        <div class="container">
+            <h2>Chapters</h2>
+            <p>{{ course[1] }}</p>
+
+            <!-- Progress Bar -->
+            <div class="progress mb-3">
+                <div class="progress-bar progress-bar-custom" id="course-progress-bar" role="progressbar"
+                     data-progress="{{ course[3]|default(0) }}">
+                    {{ course[3]|default(0) }}%
+                </div>
+            </div>
+
+            <!-- Chapters List -->
+            <ul class="list-unstyled">
+                {% for chapter in chapters %}
+                <li class="chapter-item d-flex align-items-center mb-2">
+                    <input type="checkbox" class="chapter-checkbox me-2" data-id="{{ chapter[0] }}" {% if chapter[2] %}checked{% endif %}>
+                    <a href="{{ url_for('content', chapter_id=chapter[0]) }}">{{ chapter[1] }}</a>
                 </li>
-            {% else %}
+                {% else %}
                 <li>No chapters available for this course.</li>
-            {% endfor %}
-        </ul>
-        <a class="back-btn" href="{{ url_for('dashboard') }}">⬅ Back to Dashboard</a>
+                {% endfor %}
+            </ul>
+
+            <a class="back-btn btn btn-secondary mt-3" href="{{ url_for('dashboard') }}">⬅ Back to Dashboard</a>
+        </div>
     </div>
+
+    <script>
+        // Handle checkbox change for real-time update
+        document.querySelectorAll('.chapter-checkbox').forEach(cb => {
+            cb.addEventListener('change', function() {
+                let chapter_id = this.dataset.id;
+                let completed = this.checked ? 1 : 0;
+
+                fetch("{{ url_for('update_chapter') }}", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: `chapter_id=${chapter_id}&completed=${completed}`
+                })
+                .then(res => res.json())
+                .then(data => {
+                    if(data.success){
+                        // Update course progress bar dynamically
+                        const progressBar = document.getElementById('course-progress-bar');
+                        progressBar.style.width = data.progress + '%';
+                        progressBar.setAttribute('aria-valuenow', data.progress);
+                        progressBar.textContent = Math.round(data.progress) + '%';
+
+                        // Optionally update dashboard counters if IDs exist
+                        const completedElem = document.getElementById('completed-courses-count');
+                        const inprogressElem = document.getElementById('inprogress-courses-count');
+                        if(completedElem) completedElem.textContent = data.completed_count;
+                        if(inprogressElem) inprogressElem.textContent = data.inprogress_count;
+                    }
+                });
+            });
+        });
+
+        // Initialize progress bar on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            const progressBar = document.getElementById('course-progress-bar');
+            let progress = progressBar.dataset.progress || 0;
+            progressBar.style.width = progress + '%';
+            progressBar.textContent = Math.round(progress) + '%';
+        });
+    </script>
 </body>
 </html>
